@@ -1,0 +1,45 @@
+﻿@model InAndOut.Models.ExpenseType
+
+<form method="post" asp-action="Update">
+    @*Vi bruger action=Update fra vores controller til at updatere (Optional da viewet har samme navn som actionen, men det gør det mere tydeligt ved at skrive det)*@
+    <input asp-for="Id" hidden /> @*Vores Update action skal bruge Id til at vide hvilket objekt den skal updatere*@
+    <div class="border p-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div> @*Implementere min validation jeg har lavet i min model (ikke nødvendig når vi har vores span sektion)*@
+        <div class="form-group row">
+            <h2 class="text-black-50 pl-3">Update Expense Types</h2>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group row">
+                    <div class="col-6">
+                        <label asp-for="TypeName"></label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-6">
+                        <input asp-for="TypeName" class="form-control" />  @*asp-for gør at det der bliver skrevet i det label bliver gemt i "ItemName" propperty'en*@
+                        <span asp-validation-for="TypeName" class="text-danger"></span> @*Viser Error besked under input feltet*@
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-8 offset-2 row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-info w-75" value="Update" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-danger w-75">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@*Laver validation på server siden*@
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

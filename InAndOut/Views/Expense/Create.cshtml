@@ -1,0 +1,63 @@
+﻿@*Her får vi gavnen af at have viewmodels, som har alt hvad vi skal bruge. I stedet for at brugte vores Expense Model OG en Model fra ExpenseType (til at lave drop downlisten). Nu er der større abstraction mellem klasserne*@
+
+@model InAndOut.Models.ViewModels.ExpenseViewModel
+
+<form method="post" asp-action="Create">
+    <div class="border p-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div> @*Implementere min validation jeg har lavet i min model (ikke nødvendig når vi har vores span sektion)*@
+        <div class="form-group row">
+            <h2 class="text-black-50 pl-3">Add Expense</h2>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Expense.ExpenseName"></label>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="Expense.Amount"></label>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="Expense.ExpenseType"></label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <input asp-for="Expense.ExpenseName" class="form-control" />  @*asp-for gør at det der bliver skrevet i det input bliver gemt i "ExpenseName" propperty'en*@
+                        <span asp-validation-for="Expense.ExpenseName" class="text-danger"></span> @*Viser Error besked under input feltet*@
+                    </div>
+                    <div class="col-4">
+                        <input asp-for="Expense.Amount" class="form-control" />
+                        <span asp-validation-for="Expense.Amount" class="text-danger"></span>
+                    </div>
+                    <div class="col-4">
+                        <select asp-for="Expense.ExpenseTypeId" asp-items="@Model.ExpenseTypeDropDown" class="form-control">
+                            @*Vi bruger vores viewbag vi lavede i controlleren til at vise de forskellige typer der er gemt i databasen HUSK select gør det til en dropdown*@
+                        </select>
+                        <span asp-validation-for="Expense.ExpenseTypeId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-8 offset-2 row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-info w-75" value="Create" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-danger w-75">Back</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+
+@*Laver validation på server siden*@
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+

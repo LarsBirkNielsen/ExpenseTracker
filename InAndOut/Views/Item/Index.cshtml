@@ -1,0 +1,50 @@
+﻿@*Vi bruger vores Model-Klasse "Item" og laver det til en IEnumerable liste*@
+@model IEnumerable<InAndOut.Models.Item> 
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary"> Borrowed Items List</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Item" asp-action="CreateNewItem" class="btn btn-primary">Create new Item</a> @*asp-controller siger hvilken controller vi skal bruge og Action fortæller hvilken action i controller klassen vi vil gøre brug af*@
+        </div>
+    </div>
+    <br />
+
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped table-hover" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        Item Name
+                    </th>
+                    <th>
+                        Borrower
+                    </th>
+                    <th>
+                        Lender
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td width="30%">@item.ItemName</td> 
+                    <td width="30%">@item.Borrower</td>
+                    <td width="30%">@item.Lender</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
+    }
+    else 
+    { 
+        <p> No items created yet</p>
+    }
+</div>
+
+

@@ -1,0 +1,50 @@
+﻿@*Vi bruger denne model, fordi den nye item vi skal lave skal gemmes som et objekt af vore Models.Item klasse*@
+@model InAndOut.Models.Item
+
+
+<form method="post" asp-action="CreateNewItem">
+    <div class="border p-3">
+        <div class="form-group row">
+            <h2 class="text-black-50 pl-3">Add Item</h2>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="ItemName"></label>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="Borrower"></label>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="Lender"></label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <input asp-for="ItemName" class="form-control" />  @*asp-for gør at det der bliver skrevet i det label bliver gemt i "ItemName" propperty'en*@
+                    </div>
+                    <div class="col-4">
+                        <input asp-for="Borrower" class="form-control" />
+                    </div>
+                    <div class="col-4">
+                        <input asp-for="Lender" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-8 offset-2 row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-info w-75" value="Create" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-danger w-75">Back</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+
+
